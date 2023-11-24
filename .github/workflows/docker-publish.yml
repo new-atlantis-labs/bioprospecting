@@ -77,10 +77,11 @@ jobs:
         id: build-and-push-antiSMASH
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
-          context: ./execution/bgc_annotation/src/antismash_Dockerfile
+          context: ./execution/bgc_annotation
+          file: ./execution/bgc_annotation/src/antismash_Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta1.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          labels: ${{ steps.meta1.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -95,10 +96,11 @@ jobs:
         id: build-and-push-BigSlice
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
-          context: ./execution/bgc_clustering/src/bigslice_Dockerfile
+          context: ./execution/bgc_clustering
+          file: ./execution/bgc_clustering/src/bigslice_Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta2.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          labels: ${{ steps.meta2.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -114,9 +116,10 @@ jobs:
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: ./execution/bgc_taxonomy/src/mmseqs_Dockerfile
+          file: ./execution/bgc_taxonomy/src/mmseqs_Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta3.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          labels: ${{ steps.meta3.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
